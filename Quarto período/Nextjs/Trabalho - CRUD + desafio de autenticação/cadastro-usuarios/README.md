@@ -1,0 +1,2 @@
+Este repositório trata o trabalho do dia 26/10/2026 e o desafio extra do professor do dia 08/11/2026
+This repository contains the work for the assignment due on October 26, 2026, as well as the extra challenge assigned by the professor, due on November 8, 2026.

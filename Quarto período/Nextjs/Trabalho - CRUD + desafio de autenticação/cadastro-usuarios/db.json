@@ -1,0 +1,34 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Mariana Oliveira",
+      "cpf": "529.982.247-25",
+      "email": "mariana@example.com",
+      "telefone": "(44) 99999-1234",
+      "nascimento": "14/05/1998",
+      "cep": "87501-000",
+      "rua": "Rua Paraná",
+      "numero": "120",
+      "bairro": "Centro",
+      "cidade": "Umuarama",
+      "estado": "PR",
+      "senha": "Demo123!"
+    },
+    {
+      "id": "2",
+      "nome": "Lucas Santos",
+      "cpf": "111.444.777-35",
+      "email": "lucas@example.com",
+      "telefone": "(44) 98888-5678",
+      "nascimento": "21/08/2000",
+      "cep": "87502-000",
+      "rua": "Avenida Brasil",
+      "numero": "250",
+      "bairro": "Zona I",
+      "cidade": "Umuarama",
+      "estado": "PR",
+      "senha": "Demo456!"
+    }
+  ]
+}
