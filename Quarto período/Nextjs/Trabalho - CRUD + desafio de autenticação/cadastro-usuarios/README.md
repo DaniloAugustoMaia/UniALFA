@@ -1,4 +1,5 @@
 # Cadastro de Usuários
+🇬🇧 [Read in English](#user-registration)
 
 Sistema de gerenciamento de usuários (CRUD) desenvolvido em **Next.js**, como trabalho da disciplina de Next.js do curso de Tecnologia em Sistemas para Internet (UniALFA, 4º período).
 
@@ -79,3 +80,88 @@ cadastro-usuarios/
 ## Autor
 
 **Danilo Augusto Maia**, estudante de Tecnologia em Sistemas para Internet (UniALFA).
+
+
+---
+
+# User Registration
+
+User management system (CRUD) built with **Next.js**, as an assignment for the Next.js course of the Internet Systems Technology program (UniALFA, 4th semester).
+
+> **Academic assignment:** work proposed by the professor, due on **October 26, 2026**.
+
+## Features
+
+- **Listing** of users in a table, with counters and search by name, e-mail or CPF
+- **Registration** of users through a form (personal data, address and password)
+- **Editing** of existing users (the password is optional: if left empty, the current one is kept)
+- **Deletion** of users, with confirmation
+- **Input masks** for CPF, phone, ZIP code (CEP) and date of birth
+- **Validation** with an error message on each field:
+  - full name (at least 3 characters)
+  - valid CPF (checks the verification digits)
+  - e-mail in a valid format
+  - phone with 10 or 11 digits
+  - real date of birth, in DD/MM/YYYY format and not in the future
+  - ZIP code (CEP) with 8 digits
+  - state code (UF) with 2 letters
+  - password with at least 8 characters
+
+## Technologies
+
+- [Next.js](https://nextjs.org/) (App Router) and React
+- [Zod](https://zod.dev/) for the validation schema
+- [JSON Server](https://github.com/typicode/json-server) to simulate the backend (REST API)
+- Plain CSS (`globals.css`)
+
+## How to run
+
+Prerequisite: [Node.js](https://nodejs.org/) installed.
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Terminal 1: start the API (JSON Server) on port 3001
+npm run dev:api
+
+# 3. Terminal 2: start Next.js
+npm run dev
+```
+
+Open **http://localhost:3000**.
+
+> On Windows PowerShell, if you get the "script execution is disabled" error, use `npm.cmd` instead of `npm`.
+
+## Structure
+
+```
+cadastro-usuarios/
+├── db.json                  # simulated database (JSON Server)
+└── src/
+    ├── app/
+    │   ├── page.jsx         # main screen: listing, form and CRUD
+    │   ├── layout.js        # root layout and metadata
+    │   └── globals.css      # application styles
+    └── lib/
+        └── validacoes.js    # Zod schema and CPF/date validation
+```
+
+## Endpoints used (JSON Server)
+
+| Method | Route            | Action          |
+| ------ | ---------------- | --------------- |
+| GET    | `/usuarios`      | List users      |
+| POST   | `/usuarios`      | Create user     |
+| PUT    | `/usuarios/:id`  | Update user     |
+| DELETE | `/usuarios/:id`  | Delete user     |
+
+## Notes
+
+- The data in `db.json` is fictional and for demonstration only.
+- Passwords are stored **without encryption**, since JSON Server is only a simulated backend for educational purposes. In a real system, passwords must be hashed and handled on the server.
+- The professor's extra authentication challenge (due on November 8, 2026) will be developed next.
+
+## Author
+
+**Danilo Augusto Maia**, student of Internet Systems Technology (UniALFA).
