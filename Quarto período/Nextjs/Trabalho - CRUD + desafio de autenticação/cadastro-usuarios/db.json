@@ -29,6 +29,36 @@
       "cidade": "Umuarama",
       "estado": "PR",
       "senha": "Demo456!"
+    },
+    {
+      "nome": "Dan",
+      "cpf": "529.982.247-25",
+      "email": "daaaaaa@gmail.com",
+      "telefone": "(44) 99999-9999",
+      "nascimento": "22/02/2000",
+      "cep": "98989-999",
+      "rua": "aaaaaa",
+      "numero": "34535345",
+      "bairro": "Abóbora",
+      "cidade": "Abobrinha",
+      "estado": "BR",
+      "senha": "fytfyfyfyfty",
+      "id": "ae0qKRN"
+    },
+    {
+      "nome": "srfsfsdfds",
+      "cpf": "529.982.247-25",
+      "email": "sresrsr@gmail.com",
+      "telefone": "(54) 35355-4353",
+      "nascimento": "12/02/2000",
+      "cep": "54353-537",
+      "rua": "354353",
+      "numero": "534535",
+      "bairro": "35435345",
+      "cidade": "354353",
+      "estado": "35",
+      "senha": "3543536575757",
+      "id": "ixJlPYM"
     }
   ]
 }

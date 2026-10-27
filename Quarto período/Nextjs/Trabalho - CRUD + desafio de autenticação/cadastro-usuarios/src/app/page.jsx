@@ -1,7 +1,7 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
+import { usuarioSchema } from "../lib/validacoes";
 
 const API = "http://localhost:3001/usuarios";
 
@@ -28,6 +28,7 @@ export default function Home() {
   const [dados, setDados] = useState(vazio);
   const [mensagem, setMensagem] = useState("");
   const [erro, setErro] = useState("");
+  const [erros, setErros] = useState({});
   const [carregando, setCarregando] = useState(true);
 
   async function carregarUsuarios() {
@@ -69,6 +70,7 @@ export default function Home() {
   function novoUsuario() {
     setEditando(null);
     setDados({ ...vazio });
+    setErros({});
     setMensagem("");
     setErro("");
     setFormulario(true);
@@ -77,6 +79,7 @@ export default function Home() {
   function editarUsuario(usuario) {
     setEditando(usuario);
     setDados({ ...vazio, ...usuario, senha: "" });
+    setErros({});
     setMensagem("");
     setErro("");
     setFormulario(true);
@@ -126,80 +129,36 @@ export default function Home() {
       ...anterior,
       [name]: valor,
     }));
+
+    setErros((anterior) => ({ ...anterior, [name]: "" }));
   }
 
-  
   function validar() {
-    if (
-      !dados.nome.trim() ||
-      !dados.cpf.trim() ||
-      !dados.email.trim() ||
-      !dados.telefone.trim() ||
-      !dados.nascimento.trim() ||
-      !dados.cep.trim() ||
-      !dados.rua.trim() ||
-      !dados.numero.trim() ||
-      !dados.bairro.trim() ||
-      !dados.cidade.trim() ||
-      !dados.estado.trim()
-    ) {
-      return "Preencha todos os campos obrigatórios.";
-    }
+    const resultado = usuarioSchema.safeParse(dados);
+    const novosErros = {};
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dados.email)) {
-      return "Digite um e-mail válido.";
-    }
-
-    const cpf = dados.cpf.replace(/\D/g, "");
-
-    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
-      return "Digite um CPF válido com 11 dígitos.";
-    }
-
-    if (![10, 11].includes(dados.telefone.replace(/\D/g, "").length)) {
-      return "Digite um telefone válido.";
-    }
-
-    if (dados.cep.replace(/\D/g, "").length !== 8) {
-      return "O CEP deve ter 8 dígitos.";
-    }
-
-    const partes = dados.nascimento.split("/").map(Number);
-    const [dia, mes, ano] = partes;
-    const data = new Date(ano, mes - 1, dia);
-
-    if (
-      partes.length !== 3 ||
-      !dia ||
-      !mes ||
-      !ano ||
-      ano < 1900 ||
-      data.getDate() !== dia ||
-      data.getMonth() !== mes - 1 ||
-      data.getFullYear() !== ano ||
-      data > new Date()
-    ) {
-      return "Digite uma data válida no formato DD/MM/AAAA.";
+    if (!resultado.success) {
+      for (const problema of resultado.error.issues) {
+        const campo = problema.path[0];
+        if (!novosErros[campo]) novosErros[campo] = problema.message;
+      }
     }
 
     if (!editando && dados.senha.length < 8) {
-      return "A senha deve ter pelo menos 8 caracteres.";
+      novosErros.senha = "A senha deve ter pelo menos 8 caracteres.";
+    } else if (editando && dados.senha && dados.senha.length < 8) {
+      novosErros.senha = "A nova senha deve ter pelo menos 8 caracteres.";
     }
 
-    if (editando && dados.senha && dados.senha.length < 8) {
-      return "A nova senha deve ter pelo menos 8 caracteres.";
-    }
-
-    return "";
+    setErros(novosErros);
+    return Object.keys(novosErros).length === 0;
   }
 
   async function salvarUsuario(evento) {
     evento.preventDefault();
 
-    const erroValidacao = validar();
-
-    if (erroValidacao) {
-      setErro(erroValidacao);
+    if (!validar()) {
+      setErro("Corrija os campos indicados em vermelho.");
       return;
     }
 
@@ -490,7 +449,6 @@ export default function Home() {
         </div>
       </section>
 
-
       {formulario && (
         <div className="modal-backdrop">
           <section className="form-modal">
@@ -507,13 +465,13 @@ export default function Home() {
               <button
                 className="close-button"
                 type="button"
-                onClick={() => setFormulario(false)}
+                onClick={() => { setFormulario(false); setErro(""); }}
               >
                 ×
               </button>
             </header>
 
-            <form onSubmit={salvarUsuario}>
+            <form onSubmit={salvarUsuario} noValidate>
               <div className="form-body">
                 <div className="form-section-title">
                   <span className="section-icon">♙</span>
@@ -543,8 +501,11 @@ export default function Home() {
                         placeholder={placeholder}
                         value={dados[nome]}
                         onChange={atualizarCampo}
-                        required
+                        className={erros[nome] ? "invalid" : ""}
                       />
+                      {erros[nome] && (
+                        <span className="field-error">{erros[nome]}</span>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -577,8 +538,11 @@ export default function Home() {
                         placeholder={placeholder}
                         value={dados[nome]}
                         onChange={atualizarCampo}
-                        required
+                        className={erros[nome] ? "invalid" : ""}
                       />
+                      {erros[nome] && (
+                        <span className="field-error">{erros[nome]}</span>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -606,10 +570,12 @@ export default function Home() {
                     placeholder="Mínimo de 8 caracteres"
                     value={dados.senha}
                     onChange={atualizarCampo}
-                    required={!editando}
-                    minLength={8}
+                    className={erros.senha ? "invalid" : ""}
                     autoComplete="new-password"
                   />
+                  {erros.senha && (
+                    <span className="field-error">{erros.senha}</span>
+                  )}
                 </div>
 
                 {erro && <div className="notice danger">{erro}</div>}
