@@ -33,7 +33,7 @@ export default function Dashboard() {
   const maximo = Math.max(...vendasPorMes.map((item) => item.valor));
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-7xl">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs font-bold tracking-widest text-blue-600">

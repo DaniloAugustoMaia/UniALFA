@@ -47,7 +47,7 @@ export default function Produtos() {
   });
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-7xl">
       <header>
         <Link
           href="/dashboard"
