@@ -1,0 +1,11 @@
+git reset -q
+@"
+node_modules
+.next
+.env*
+*.tsbuildinfo
+next-env.d.ts
+"@ | Set-Content -Encoding ascii .gitignore
+git check-ignore -v node_modules
+git ls-files node_modules | Select-Object -First 3
+git status --short | Select-Object -First 10
