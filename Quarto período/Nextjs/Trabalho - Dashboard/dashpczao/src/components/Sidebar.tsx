@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const itens = [
   { href: "/dashboard", rotulo: "Dashboard", icone: "▦" },
@@ -10,6 +10,12 @@ const itens = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  function sair() {
+    sessionStorage.removeItem("logado");
+    router.push("/login");
+  }
 
   return (
     <aside className="flex flex-col gap-6 bg-slate-900 p-4 text-slate-200 md:min-h-screen md:w-60 md:shrink-0">
@@ -46,13 +52,14 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <Link
-        href="/login"
-        className="mt-auto flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-800 hover:text-white"
+      <button
+        type="button"
+        onClick={sair}
+        className="mt-auto flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-400 transition hover:bg-slate-800 hover:text-white"
       >
         <span>⎋</span>
         Sair
-      </Link>
+      </button>
     </aside>
   );
 }
