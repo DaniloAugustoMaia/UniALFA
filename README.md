@@ -15,6 +15,7 @@ Este repositório reúne os trabalhos desenvolvidos ao longo do curso, organizad
 | Período | Disciplina | Atividade | Entrega |
 | ------- | ---------- | --------- | ------- |
 | 4º | Next.js | [Cadastro de Usuários (CRUD com validações) + desafio de autenticação](./Quarto%20per%C3%ADodo/Nextjs/Trabalho%20-%20CRUD%20%2B%20desafio%20de%20autentica%C3%A7%C3%A3o) | 26/10/2026 (desafio extra: 08/11/2026) |
+| 4º | Next.js | [Trabalho do Dashboard (login, dashboard e listagem)](./Quarto%20per%C3%ADodo/Nextjs/Trabalho%20-%20Dashboard) | 19/10/2026 |
 
 > Novas atividades serão adicionadas ao longo do curso.
 
@@ -56,6 +57,7 @@ This repository gathers the work developed during the program, organized by seme
 | Semester | Course | Assignment | Due date |
 | -------- | ------ | ---------- | -------- |
 | 4th | Next.js | [User Registration (CRUD with validation) + authentication challenge](./Quarto%20per%C3%ADodo/Nextjs/Trabalho%20-%20CRUD%20%2B%20desafio%20de%20autentica%C3%A7%C3%A3o) | October 26, 2026 (extra challenge: November 8, 2026) |
+| 4th | Next.js | [Dashboard Assignment (login, dashboard and listing)](./Quarto%20per%C3%ADodo/Nextjs/Trabalho%20-%20Dashboard) | October 19, 2026 |
 
 > New assignments will be added throughout the program.
 
