@@ -2,15 +2,16 @@
   "name": "cadastro-usuarios",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev",
-  "dev:api": "json-server --watch db.json --port 3001",
-  "build": "next build",
-  "start": "next start",
-  "lint": "eslint"
-},
+  "scripts": {
+    "dev": "next dev",
+    "dev:api": "json-server --watch db.json --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",
+    "jose": "^6.2.16",
     "json-server": "^0.17.4",
     "next": "16.4.3",
     "react": "19.3.0",
