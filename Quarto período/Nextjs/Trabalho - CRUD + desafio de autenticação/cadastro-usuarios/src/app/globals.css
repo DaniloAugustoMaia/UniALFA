@@ -1073,3 +1073,66 @@ tbody tr:last-child td {
   font-size: 10px;
   font-weight: 600;
 }
+
+
+/* ===== LOGIN ===== */
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--background);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 34px 30px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 10px 30px #10234714;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.login-card h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 24px;
+}
+
+.login-subtitle {
+  margin: 6px 0 22px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.login-card .field {
+  margin-bottom: 16px;
+}
+
+.login-submit {
+  width: 100%;
+  padding: 13px;
+  margin-top: 4px;
+}
+
+.login-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.logout-button {
+  margin-left: 8px;
+  padding: 8px 14px;
+}
