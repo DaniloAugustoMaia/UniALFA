@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { COOKIE_TOKEN, DURACAO_SEGUNDOS, criarToken } from "@/lib/auth";
+import { COOKIE_TOKEN, DURACAO_SEGUNDOS, criarToken } from "../../../lib/auth";
 
 const API = "http://localhost:3001/usuarios";
 
