@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { usuarioSchema } from "../lib/validacoes";
 
 const API = "http://localhost:3001/usuarios";
@@ -30,7 +31,13 @@ export default function Home() {
   const [erro, setErro] = useState("");
   const [erros, setErros] = useState({});
   const [carregando, setCarregando] = useState(true);
+  const router = useRouter();
 
+  async function sair() {
+    await fetch("/api/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
+  }
   async function carregarUsuarios() {
     setCarregando(true);
     setErro("");
@@ -268,6 +275,13 @@ export default function Home() {
             <span className="status-dot" />
             Sistema de cadastro
             <div className="avatar avatar-small">AD</div>
+                        <button
+              type="button"
+              className="button button-outline logout-button"
+              onClick={sair}
+            >
+              Sair
+            </button>
           </div>
         </header>
 
