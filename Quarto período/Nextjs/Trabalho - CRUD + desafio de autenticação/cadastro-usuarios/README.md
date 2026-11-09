@@ -22,6 +22,29 @@ Sistema de gerenciamento de usuários (CRUD) desenvolvido em **Next.js**, como t
   - UF com 2 letras
   - senha com no mínimo 8 caracteres
 
+## Autenticação e rotas protegidas (desafio)
+
+O sistema exige **login com token de acesso**: somente usuários autenticados acessam as páginas internas.
+
+- O login (`/login`) confere o e-mail e a senha com os usuários do `db.json`.
+- Se estiverem corretos, a rota `/api/login` gera um **token JWT** (assinado, válido por 1 hora) e o guarda em um **cookie `httpOnly`**.
+- O arquivo `src/proxy.js` roda antes de cada página: sem token válido, o usuário é redirecionado para `/login`.
+- O botão **Sair** apaga o token.
+
+### Configuração
+Crie o arquivo `.env.local` a partir do exemplo e troque a chave por uma sua:
+
+```bash
+cp .env.example .env.local
+```
+
+No PowerShell: `Copy-Item .env.example .env.local`
+
+### Como testar
+Suba a API (`npm run dev:api`) e o projeto (`npm run dev`). Entre com um usuário do `db.json` (por exemplo, `mariana@example.com`). Para ver a proteção, abra `http://localhost:3000` em uma aba anônima: você será levado ao login.
+
+> **Limites:** as senhas do `db.json` estão em texto puro e o JSON Server (porta 3001) não exige token, pois é apenas um backend simulado para fins didáticos. A proteção cobre as páginas do sistema.
+
 ## Tecnologias
 
 - [Next.js](https://nextjs.org/) (App Router) e React
@@ -106,6 +129,29 @@ User management system (CRUD) built with **Next.js**, as an assignment for the N
   - ZIP code (CEP) with 8 digits
   - state code (UF) with 2 letters
   - password with at least 8 characters
+
+## Authentication and protected routes (challenge)
+
+The system requires **login with an access token**: only authenticated users can reach the internal pages.
+
+- The login page (`/login`) checks the e-mail and password against the users in `db.json`.
+- If they match, the `/api/login` route creates a **JWT token** (signed, valid for 1 hour) and stores it in an **`httpOnly` cookie**.
+- The `src/proxy.js` file runs before every page: without a valid token, the user is redirected to `/login`.
+- The **Sair** (log out) button deletes the token.
+
+### Setup
+Create the `.env.local` file from the example and replace the key with your own:
+
+```bash
+cp .env.example .env.local
+```
+
+On PowerShell: `Copy-Item .env.example .env.local`
+
+### How to test
+Start the API (`npm run dev:api`) and the project (`npm run dev`). Sign in with a user from `db.json` (for example, `mariana@example.com`). To see the protection, open `http://localhost:3000` in an incognito tab: you will be taken to the login page.
+
+> **Limitations:** the passwords in `db.json` are stored in plain text and JSON Server (port 3001) does not require a token, since it is only a simulated backend for educational purposes. The protection covers the system's pages.
 
 ## Technologies
 
